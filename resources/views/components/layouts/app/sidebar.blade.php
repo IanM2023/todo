@@ -4,6 +4,9 @@
         @include('partials.head')
     </head>
     <body class="layout sidebar min-h-screen bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+
+        <x-success-message-modal />
+
         <x-sidebar sticky stashable class="border-r border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
             <x-sidebar.toggle class="lg:hidden w-10 p-0">
                 <x-phosphor-x aria-hidden="true" width="20" height="20" />
@@ -17,6 +20,10 @@
                 <x-navlist.group :heading="__('Platform')">
                     <x-navlist.item before="phosphor-house-line" :href="route('dashboard')" :current="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-navlist.item>
+
+                    <x-navlist.item before="phosphor-list-checks" :href="route('todo.index')" :current="request()->routeIs('todo.*')">
+                        {{ __('Todos') }}
                     </x-navlist.item>
                 </x-navlist.group>
             </x-navlist>
@@ -114,6 +121,8 @@
         </x-header>
 
         {{ $slot }}
+
+        @stack('script')
 
     </body>
 </html>
